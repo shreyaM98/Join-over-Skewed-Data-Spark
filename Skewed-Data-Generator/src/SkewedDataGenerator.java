@@ -34,6 +34,8 @@ public class SkewedDataGenerator {
             // if numSkewKey=1 then skewed key id is 1, if numSkewKey=2 then skewed key ids
             // are 1,2 and so on..
             transID = i;
+            lastTransId=transID;
+
             custID = rad.nextInt(numSkewKey) + 1;
             // generating random transNumItems of length 1-10
             //transNumItems = rad.nextInt(max_items - min_items + 1) + min_items;
@@ -45,8 +47,8 @@ public class SkewedDataGenerator {
 //			rating = rad.nextBoolean() ? "good" : "bad";
             // adding record into list
             writer.write(custID + "," +transID+ "," + transNumItems + "," + transDesc + ","+ transTotal +"\n");
-            lastTransId=transID;
         }
+        lastTransId++;
 
         //generating random keys for remaining rows (non-skewed)
         //suppose skew = 0.6 then 40% of total rows belong to nonskewed keys
