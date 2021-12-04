@@ -71,9 +71,10 @@ public class SkewedDataGenerator {
 
     // method to create records for CustomerSkewed
     public void createData(int numRecords, String filepath) throws IOException {
-        //customer: ID,Name,Age,Gender,CountryCode,Salary
-        int ID, Age, CountryCode,Salary;
-        String Name, Gender;
+        //customer: ID,Name,Age,gender,countryCode,salary
+        int ID, age, countryCode;
+        float salary;
+        String name, gender;
         // define range of lengths for each field
         int min_name = 10, max_name = 20, min_age = 10, max_age = 70;
         BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
@@ -81,12 +82,14 @@ public class SkewedDataGenerator {
             // ID in range from 1 to total number of records
             ID = i;
             // generating random string Name of length 10-20
-            Name = generateRandomString(rad.nextInt(max_name - min_name + 1) + min_name);
+            name = generateRandomString(rad.nextInt(max_name - min_name + 1) + min_name);
             // generating random Age from range 10-70
-            Age = rad.nextInt(max_age - min_age + 1) + min_age;
-            Gender = rad.nextBoolean() ? "male" : "female";
+            age = rad.nextInt(max_age - min_age + 1) + min_age;
+            gender = rad.nextBoolean() ? "male" : "female";
+            countryCode = randomFieldGenerator.getRandomInteger(1, 10);;
+            salary = randomFieldGenerator.getRandomFloat(100, 10000);
             // adding record into list
-            writer.write(ID + "," + Name + "," + Age + "," + Gender + "\n");
+            writer.write(ID + "," + name + "," + age + "," + gender + "," + countryCode + "," + salary + "\n");
         }
         writer.close();
     }
