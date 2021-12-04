@@ -88,7 +88,7 @@ public class SkewedDataGenerator {
             // generating random Age from range 10-70
             age = rad.nextInt(max_age - min_age + 1) + min_age;
             gender = rad.nextBoolean() ? "male" : "female";
-            countryCode = randomFieldGenerator.getRandomInteger(1, 10);;
+            countryCode = randomFieldGenerator.getRandomInteger(1, 10);
             salary = randomFieldGenerator.getRandomFloat(100, 10000);
             // adding record into list
             writer.write(ID + "," + name + "," + age + "," + gender + "," + countryCode + "," + salary + "\n");
