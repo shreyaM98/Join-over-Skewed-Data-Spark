@@ -2,7 +2,6 @@ import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
-
 object SmartApproach{
   val spark = SparkSession.builder.appName("BigDataFinalProject").config("spark.master", "local").getOrCreate()
 
@@ -31,6 +30,8 @@ object SmartApproach{
         if(fs.exists(outputPath) && fs.isDirectory(outputPath))
           fs.delete(outputPath,true)
 
+        val startTime = System.nanoTime
+
         val pairsA = getPartitionedRddA(fileAPath, repartitionNum)
         val pairsB = getPartitionedRddB(fileBPath, repartitionNum)
 
@@ -56,6 +57,9 @@ object SmartApproach{
         finalResult.saveAsTextFile(outputFile)
 
         spark.stop()
+
+        val duration = (System.nanoTime - startTime) / 1e9d
+        println("Smart Approach time duration: " + duration)
       } catch {
         case e : Exception => println(e.printStackTrace())
       }

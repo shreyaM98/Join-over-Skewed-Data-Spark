@@ -2,8 +2,6 @@ import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
-import scala.reflect.io.File
-
 object NaiveApproach{
   val spark = SparkSession.builder.appName("BigDataFinalProject").config("spark.master", "local").getOrCreate()
 
@@ -33,6 +31,8 @@ object NaiveApproach{
       if(fs.exists(outputPath) && fs.isDirectory(outputPath))
         fs.delete(outputPath,true)
 
+      val startTime = System.nanoTime
+
       val pairsA = getPartitionedRddA(fileAPath, repartitionNum)
       val pairsB = getPartitionedRddB(fileBPath, repartitionNum)
 
@@ -40,6 +40,8 @@ object NaiveApproach{
 
       naiveJoin.saveAsTextFile(outputFile)
       spark.stop()
+      val duration = (System.nanoTime - startTime) / 1e9d
+      println("Naive Approach time duration: " + duration)
     }
     catch
     {
