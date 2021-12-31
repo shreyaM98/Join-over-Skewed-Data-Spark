@@ -1,13 +1,9 @@
 # Join-over-Skewed-Data-Spark
 
-This project uses Scala version: and Spark version:
+This project uses Scala version: 2.3.7 and spark-sql version: 3.2.0
 
-Join two large datasets when one of them is Skewed
-
-We used Customer and Transaction dataset
-
-Transaction dataset is skewed on few customer keys
-
+#### Problem statement:
+Problem is to join two large datasets when one of them is Skewed. We used Customer and Transaction dataset.Transaction dataset is skewed on few customer keys.
 We know that dataset is skewed but which keys are skewed is not known.
 
 Naive Approach: Repartition Join
