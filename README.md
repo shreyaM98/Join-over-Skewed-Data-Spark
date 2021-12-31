@@ -1,5 +1,7 @@
 # Join-over-Skewed-Data-Spark
 
+### Big Data Management
+
 This project uses Scala version: 2.3.7 and spark-sql version: 3.2.0
 
 #### Problem statement:
